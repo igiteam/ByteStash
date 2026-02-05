@@ -1,9 +1,15 @@
 name: Build and Push Docker Image on Release
 
 on:
+  push:
+    tags: ["v*"] # ADD THIS LINE
   release:
     types: [published]
   workflow_dispatch:
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   docker:
